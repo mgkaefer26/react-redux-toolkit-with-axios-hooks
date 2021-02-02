@@ -16,6 +16,6 @@ You will also see any lint errors in the console.
 
 ### Login Credentials
 
-Please use the following credentials to login to the
-`username`: eve.holt@reqres.in
+Please use the following credentials to login to the\
+`username`: eve.holt@reqres.in \
 `password`: cityslicka
