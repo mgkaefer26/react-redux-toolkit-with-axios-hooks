@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import { IndexPage, LoginPage, MovieInfoPage } from "./pages";
-import "./App.css";
+import "./assets/styles/App.css";
 
 export default function App() {
   return (

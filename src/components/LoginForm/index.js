@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import useAxios from "axios-hooks";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Box, Button } from "@material-ui/core";
 import { login } from "../../store/user";
 import Loading from "../Loading";
 import * as Yup from "yup";
@@ -60,23 +60,25 @@ export default function LoginForm() {
       >
         {({ isSubmitting }) => (
           <Form className={classes.formContainer}>
-            <p className={classes.centeredText}>Sign in</p>
-            <Field type="text" name="username" className={classes.mb5} />
-            <ErrorMessage name="username" />
+            <p className={classes.formTitle}>Sign in</p>
 
-            <Field type="password" name="password" className={classes.mb5} />
-            <ErrorMessage name="password" />
+            <Box>E-mail</Box>
+            <Field type="text" name="username" className={classes.input} />
+            <ErrorMessage name="username" className={classes.error} />
 
-            <button
+            <Box>Password</Box>
+            <Field type="password" name="password" className={classes.input} />
+            <ErrorMessage name="password" className={classes.error} />
+
+            <Button
               type="submit"
               disabled={isSubmitting}
-              className={classes.mb5}
+              className={classes.submitButton}
+              variant="contained"
+              color="secondary"
             >
               Login
-            </button>
-            <ErrorMessage name="username">
-              {() => <div>Teste</div>}
-            </ErrorMessage>
+            </Button>
           </Form>
         )}
       </Formik>
@@ -95,13 +97,29 @@ const useStyles = makeStyles((theme) => ({
   formContainer: {
     display: "flex",
     flexDirection: "column",
-    border: "solid 1px #231e1ec4",
+    border: "solid 1px #9a2525",
     borderRadius: 10,
     padding: 15,
     width: 300,
   },
-  centeredText: { textAlign: "center" },
-  mb5: {
+  formTitle: { color: "#9a2525", textAlign: "center" },
+  input: {
     marginBottom: 5,
+    height: 25,
+  },
+  submitButton: {
+    background: "#9a2525",
+    marginTop: 5,
+    cursor: "pointer",
+    height: 30,
+    "&:hover": {
+      color: "#9a2525",
+      background: "#fff",
+      border: "solid 1px #9a2525",
+    },
+  },
+  error: {
+    color: "#9a2525",
+    fontSize: 12,
   },
 }));

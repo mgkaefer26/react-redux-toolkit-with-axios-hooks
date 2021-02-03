@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import useAxios from "axios-hooks";
 import Loading from "../Loading";
 import { setData } from "../../store/movies";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Box } from "@material-ui/core";
 
 const REQUEST_URL = "https://fake-movie-database-api.herokuapp.com/api?s=star";
 
@@ -24,29 +24,36 @@ const MoviesList = ({ ...props }) => {
   }, [results]);
 
   return (
-    <div className={classes.root}>
-      {loading ? (
-        <Loading className={classes.loader} />
-      ) : (
-        moviesData.map((movie) => (
-          <Link
-            key={movie.imdbID}
-            className={classes.movieContainer}
-            to={`/movie-info/${movie.imdbID}`}
-          >
-            <img src={movie.Poster} className={classes.moviePoster} />
-          </Link>
-        ))
-      )}
-    </div>
+    <Box className={classes.root}>
+      <Box className={classes.wrapper}>
+        {loading ? (
+          <Loading className={classes.loader} />
+        ) : (
+          moviesData.map((movie) => (
+            <Link
+              key={movie.imdbID}
+              className={classes.movieContainer}
+              to={`/movie-info/${movie.imdbID}`}
+            >
+              <img src={movie.Poster} className={classes.moviePoster} />
+            </Link>
+          ))
+        )}
+      </Box>
+    </Box>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    width: "100%",
+    justifyContent: "center",
+  },
+  wrapper: {
+    display: "flex",
     flexFlow: "wrap",
-    justifyContent: "space-between",
+    width: 700,
   },
   movieContainer: {
     display: "flex",
@@ -58,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
     width: 150,
   },
   loader: {
-    position: "absolute",
     height: "100%",
     width: "100%",
     display: "flex",
